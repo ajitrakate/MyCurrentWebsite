@@ -1,0 +1,32 @@
+{% extends 'user_profile/base.html' %}
+
+{% block title %}Switches{% endblock %}
+
+{% block body %}
+{% for button in buttons %}
+    <div class="card my-2">
+    <h5 class="card-header">{{button.name}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">{{button.desc}}</h5>
+        <h5 class="card-title">Status : {{button.status}}</h5>
+        <p class="card-text">ID: {{button.pk}}</p>
+        <p class="card-text">Identity: {{button.button_identity}}</p>
+        <p class="card-text">{{button.last_updated}}</p>
+        <form method="POST" action="{% url 'change_status' board.board_identity button.button_identity %}">
+            {% csrf_token %}
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{button.button_identity}}" id="{{button.button_identity}}" value="ON" required>
+                <label class="form-check-label" for="{{button.button_identity}}">ON</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{button.button_identity}}" id="{{button.button_identity}}" value="OFF">
+                <label class="form-check-label" for="{{button.button_identity}}">OFF</label>
+            </div>
+            <button type="submit" class="btn btn-success">Change</button>
+
+        </form>
+    </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

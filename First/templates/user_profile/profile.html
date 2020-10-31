@@ -1,0 +1,16 @@
+{% extends 'user_profile/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<div class="card">
+  <h5 class="card-header">{{user.username}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+    <p class="card-text">{{user.email}}</p>
+    <p class="card-text">ID : {{user.id}}</a>
+  </div>
+</div>
+
+
+{% endblock %}
